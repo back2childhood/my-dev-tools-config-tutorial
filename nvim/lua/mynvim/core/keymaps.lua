@@ -3,12 +3,64 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "cpp",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(
+      0,
+      "n",
+      "<leader>r",
+      "<ESC>:w<CR>:split<CR>:te g++ -std=c++17 -pthread -levent -Wall -o ./bin/%:t:r % -g && ./bin/%:t:r<CR>i",
+      { silent = true, noremap = true }
+    )
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "c",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(
+      0,
+      "n",
+      "<leader>r",
+      "<ESC>:w<CR>:split<CR>:te gcc -std=c11 -pthread -Wall -o ./bin/%:t:r % -g && ./bin/%:t:r<CR>i",
+      { silent = true, noremap = true }
+    )
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "java",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(
+      0,
+      "n",
+      "<leader>r",
+      "<ESC>:w<CR>:split<CR>:te javac % -d ./bin && java -cp ./bin %:t:r <CR>i",
+      { silent = true, noremap = true }
+    )
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(
+      0,
+      "n",
+      "<leader>r",
+      "<ESC>:w<CR>:split<CR>:te python3 % <CR>i",
+      { silent = true, noremap = true }
+    )
+  end,
+})
+
 ---------------------
 -- General Keymaps
 ---------------------
 
 -- use ii to exit insert mode, jk recommended
-keymap.set("i", "ii", "<ESC>")
+keymap.set("i", "jk", "<ESC>")
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")

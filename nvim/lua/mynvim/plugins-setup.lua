@@ -48,6 +48,17 @@ return packer.startup(function(use)
 
   -- file explorer
   use("nvim-tree/nvim-tree.lua")
+  -- use({
+  --   "nvim-tree/nvim-tree.lua",
+  --   requires = {
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  --   config = function()
+  --     require("nvim-tree").setup({
+  --       on_attach = on_attach,
+  --     })
+  --   end,
+  -- })
 
   -- vs-code like icons
   use("nvim-tree/nvim-web-devicons")
@@ -127,6 +138,9 @@ return packer.startup(function(use)
     end,
     ft = { "markdown" },
   })
+
+  -- blankline
+  use("lukas-reineke/indent-blankline.nvim")
 
   if packer_bootstrap then
     require("packer").sync()
