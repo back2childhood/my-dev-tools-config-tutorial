@@ -13,3 +13,5 @@
 - change lua server from sumneko_lua to lua_ls
 
 - make some change to install more fast
+
+- automatically format when file(s) be saved
